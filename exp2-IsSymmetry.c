@@ -69,23 +69,10 @@ int IsSymmetry(Stack *S) {
 	}
 	i = 0;
 
-	/*for (i = 0; i < len / 2; i++) {*/
-		/*if (arr[i] != arr[len - 1 - i]) {*/
-			/*printf("It's not a symmetry string!");*/
-			/*break;*/
-		/*}*/
-		/*else {*/
-
-		/*}*/
-	/*}*/
 
 	while (i < len / 2) {
-		/*printf("arr[%d] = %c\n", i, arr[i]);*/
-		/*printf("arr[%d] = %c\n", len - 1 - i, arr[len - i - 1]);*/
 		if (arr[i] != arr[len - 1 - i]) {
 			ret = 0;
-			/*printf("ret is %d\n", ret);*/
-			break;
 		}
 
 		else {
@@ -93,7 +80,6 @@ int IsSymmetry(Stack *S) {
 			i++;
 		}
 	}
-	/*printf("ret is: %d\n", ret);*/
 	return ret;
 }
 
