@@ -34,14 +34,6 @@ void Push(Stack *S, ElemType e) {
 	S -> top++;
 }
 
-void ExecPush(Stack *S, ElemType e) {
-	while (e != '#') {
-		getchar();
-		Push(S, e);
-		e = getchar();
-	}
-}
-
 
 char Pop(Stack *S) {
 	ElemType e;
@@ -54,6 +46,7 @@ char Pop(Stack *S) {
 }
 
 int StackLen(Stack *S) {
+	printf("The length of this stack is %ld\n", S -> top - S -> base);
 	return (S -> top - S -> base);
 }
 
@@ -67,8 +60,8 @@ int IsSymmetry(Stack *S) {
 	for (i = 0; i < len; i++) {
 		arr[i] = Pop(S);
 	}
-	i = 0;
 
+	i = 0;
 
 	while (i < len / 2) {
 		if (arr[i] != arr[len - 1 - i]) {
@@ -89,12 +82,19 @@ int main() {
 	int ret = 0;
 	S = (Stack *)malloc(sizeof(Stack));
 
-	printf("Please input binary number, enter # if you want to stop\n");
+	printf("Please input the string, enter # if you want to stop\n");
+	printf("Your string may not contain more than 10 characters\n");
 	printf("Initializing the Stack\n");
 	InitStack(S);
 	printf("Done!\n");
 	c = getchar();
-	ExecPush(S, c);
+
+	while (c != '#') {
+		getchar();
+		Push(S, c);
+		c = getchar();
+	}
+	getchar();
 
 	ret = IsSymmetry(S);
 	if (ret == 1) {
