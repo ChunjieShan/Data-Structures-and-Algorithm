@@ -6,6 +6,7 @@
 #define STACK_INIT_SIZE 100
 #define STACK_INCREMENT 10
 
+// Defining ElemType as Charactor.
 typedef char ElemType;
 typedef struct {
 	ElemType *base;
@@ -13,6 +14,7 @@ typedef struct {
 	int stackSize;
 }Stack;
 
+// Initializing the Stack.
 void InitStack(Stack *S) {
 	S -> base = (ElemType *)malloc(STACK_INIT_SIZE * sizeof(ElemType));
 	if (!S -> base) {
@@ -20,8 +22,9 @@ void InitStack(Stack *S) {
 	}
 	S -> top = S -> base;
 	S -> stackSize = STACK_INIT_SIZE;
-}
+}// InitStack
 
+// Pushing the elements into the Stack.
 void Push(Stack *S, ElemType e) {
 	if (S -> top - S -> base >= S -> stackSize) {
 		S -> base = (ElemType *)realloc(S -> base, (S -> stackSize + STACK_INCREMENT) * sizeof(ElemType));
@@ -32,9 +35,18 @@ void Push(Stack *S, ElemType e) {
 	printf("Element %c is accepted\n", e);
 	*(S -> top) = e;
 	S -> top++;
-}
+}// Push
 
+// Executing Push.
+void ExecPush(Stack *S, ElemType e) {
+	while (e != '#') {
+		getchar();
+		Push(S, e);
+		e = getchar();
+	}
+}//ExecPush
 
+// Poping the elements out of the Stack. 
 char Pop(Stack *S) {
 	ElemType e;
 	if (S -> top == S -> base) {
@@ -43,13 +55,14 @@ char Pop(Stack *S) {
 
 	e = *--(S -> top);
 	return e;
-}
+}// Pop
 
+// Get the length of the Stack.
 int StackLen(Stack *S) {
-	printf("The length of this stack is %ld\n", S -> top - S -> base);
 	return (S -> top - S -> base);
 }
 
+// Judging whether the string is symmetry.
 int IsSymmetry(Stack *S) {
 	ElemType arr[10] = {0};
 	int len = 0;
@@ -60,12 +73,12 @@ int IsSymmetry(Stack *S) {
 	for (i = 0; i < len; i++) {
 		arr[i] = Pop(S);
 	}
-
 	i = 0;
 
 	while (i < len / 2) {
 		if (arr[i] != arr[len - 1 - i]) {
 			ret = 0;
+			break;
 		}
 
 		else {
@@ -74,7 +87,8 @@ int IsSymmetry(Stack *S) {
 		}
 	}
 	return ret;
-}
+}// IsSymmetry
+
 
 int main() {
 	ElemType c = '\0';
@@ -82,20 +96,19 @@ int main() {
 	int ret = 0;
 	S = (Stack *)malloc(sizeof(Stack));
 
-	printf("Please input the string, enter # if you want to stop\n");
-	printf("Your string may not contain more than 10 characters\n");
-	printf("Initializing the Stack\n");
+	printf("Please input binary number ");
+	printf("ENTER '#' IF YOU WANT TO STOP! \n");
+	printf("Initializing the Stack! \n");
+	
+	// Initializing the Stack.
 	InitStack(S);
 	printf("Done!\n");
+
+	// Input the char.
 	c = getchar();
+	ExecPush(S, c);
 
-	while (c != '#') {
-		getchar();
-		Push(S, c);
-		c = getchar();
-	}
-	getchar();
-
+	// Jugde if it's symmetry, get the result.
 	ret = IsSymmetry(S);
 	if (ret == 1) {
 		printf("It is a symmetry string!");
