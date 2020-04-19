@@ -5,3 +5,6 @@
 
 ### Experiment 2
 #### Judge a string whether it is symmetry or not by stack.
+
+### Experiment 3
+#### String matching by KMP algorithm
