@@ -1,0 +1,13 @@
+* Data Structures Experiments
+
+** Experiment 1
+*** Create a link list and accomplish adding nodes, deleting nodes and destroying the whole list.
+
+** Experiment 2
+*** Judging a string whether it's symmetry or not.
+
+** Experiment 3
+*** Accomplishing KMP algorithm.
+
+** Experiment 4
+*** Create a BiTree and accomplish preorder, in order , post order and level order traverse, exchanging subtrees.
